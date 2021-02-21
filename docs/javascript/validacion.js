@@ -36,7 +36,7 @@ addEventListener('DOMContentLoaded', ()=>{
                 break;
             default:
                 this.classList.remove('is-invalid');
-                this.classList.add('valid');
+                this.classList.add('is-valid');
                 errorEmail.innerHTML = "";
                 break;
         }
@@ -49,12 +49,12 @@ addEventListener('DOMContentLoaded', ()=>{
                 break;
             default:
                 this.classList.remove('is-invalid');
-                this.classList.add('valid');
+                this.classList.add('is-valid');
                 errorAsunto.innerHTML = "";
                 break;
         }
     })
-    inputComentario.addEventListener('click', function(){
+    inputComentario.addEventListener('keyup', function(){
         switch(true){
             case this.value.length>=0 && this.value.length<=20:
                 errorComentario.innerHTML = "Debe ingresar minimo 20 caracteres.";
@@ -62,7 +62,7 @@ addEventListener('DOMContentLoaded', ()=>{
                 break;
             default:
                 this.classList.remove('is-invalid');
-                this.classList.add('valid');
+                this.classList.add('is-valid');
                 errorComentario.innerHTML = "";
                 break;
         }
@@ -70,6 +70,8 @@ addEventListener('DOMContentLoaded', ()=>{
     formulario.addEventListener('submit',function(e){
         e.preventDefault();
         let elementos = formulario.elements
+        console.log("Formulario: ");
+        console.log(elementos);
         let error = false
         for (let i = 0; i < 3; i++) {
             if (elementos[i].value == 0) {
@@ -92,7 +94,7 @@ addEventListener('DOMContentLoaded', ()=>{
         if (elementos[2].value.length < 1) {
             console.log("entro email");
             error = true
-            errorEmail.innerHTML = "Tenés que llenar este campo"
+            errorAsunto.innerHTML = "Tenés que llenar este campo"
             this.classList.add('is-invalid')
         }
         if (elementos[3].value.length < 4) {
@@ -102,26 +104,17 @@ addEventListener('DOMContentLoaded', ()=>{
             this.classList.add('is-invalid')
         }
         if (!error) {
+            errorSubmit.innerHTML = ""
             /*MUESTO UN sweetAlert */
             Swal.fire({
-                title: '¿Quiere eviar este mensaje?',
-                icon: '¡advertencia!',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, agregalo!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Agregado..!',
-                        'Tu archivo ha sido agregado.',
-                        'success'
-                    )
-                        .then(() => {
-                            formulario.submit();
-                        })
-                }
-            })
+                position: 'top-end',
+                icon: 'success',
+                title: 'Tu mensaje ha sido enviado.',
+                showConfirmButton: false,
+                timer: 2500
+            }).then(() => {
+                formulario.submit();
+                })
         }
         else {
             errorSubmit.innerHTML = "Los campos señalados son obligatorio."
