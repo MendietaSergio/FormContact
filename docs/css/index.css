@@ -1,17 +1,16 @@
-body{
+*{
     margin: 0;
-    background-image: url('../img/fondo_de_pantalla.jpg');
-    /* Para dejar la imagen de fondo centrada, vertical y horizontalmente */
-    background-position: center center;
-    /* Para que la imagen de fondo no se repita */
-    background-repeat: no-repeat;
-    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
-    background-attachment: fixed;
-    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
-    background-size: cover;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;    
     /* Se muestra un color de fondo mientras se está cargando la imagen
     de fondo o si hay problemas para cargarla */
-    background-color: #6699;
+    background-color: rgba(48, 48, 241, 0.6);
+    height: auto;
+    background-image: linear-gradient(267deg, #a95cac 0%, #e0443e 100%);
+
 }
 span{
     top: -22px;
@@ -65,13 +64,5 @@ textarea{
 @media (min-width: 768px){
     form{
         width: 400px;
-        margin: 25%;
-        top: -60px;
-    }
-}
-@media(min-width: 1024px){
-    form{
-        margin: 32%;
-        top: -160px;
     }
 }

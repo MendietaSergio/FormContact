@@ -105,15 +105,17 @@ addEventListener('DOMContentLoaded', ()=>{
         }
         if (!error) {
             errorSubmit.innerHTML = ""
-            /*MUESTO UN sweetAlert */
             Swal.fire({
-                position: 'top-end',
+                position: 'top-center',
                 icon: 'success',
                 title: 'Tu mensaje ha sido enviado.',
                 showConfirmButton: false,
                 timer: 2500
             }).then(() => {
                 formulario.submit();
+                })
+                .then(()=>{
+                    res.render('index.html')
                 })
         }
         else {
